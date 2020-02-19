@@ -14,7 +14,8 @@ public class TennisGame2 implements TennisGame
         this.player2Name = player2Name;
     }
 
-    public String getScore(){
+    public String getScore()
+    {
         String score = "";
         score = tie(score);
         score = Deuce(score);
@@ -30,6 +31,19 @@ public class TennisGame2 implements TennisGame
         return score;
     }
     
+    private String getLiteral(int p1point2) 
+	{
+		String result = "";
+		if (p1point2==0)
+			result = "Love";
+		if (p1point2==1)
+			result = "Fifteen";
+		if (p1point2==2)
+			result = "Thirty";
+		if (p1point2==3)
+			result = "Forty";
+		return result;
+	}
     
     private String win(String score) 
 	{
