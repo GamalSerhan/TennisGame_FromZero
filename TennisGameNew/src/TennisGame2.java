@@ -16,19 +16,18 @@ public class TennisGame2 implements TennisGame
 
     public String getScore()
     {
-        String score = "";
+        String literalScore = "";
         if(isTie())
     		literalScore = getLiteral(P1_Points) + "-" + "-All";
         if(isDeuce())
     		literalScore = "Deuce";
         if(isNormal())
     		literalScore = getLiteral(P1_Points) + "-" + getLiteral(P2_Points);
-        
-        score = normal1(score);
-        
-        score = normal2(score);
-        score = normal3(score);
-        score = advantage(score);
+       
+        if(isInAdvantageOver(P1_Points, P2_Points))
+        	literalScore = "Advantage Player 1";
+        if(isInAdvantageOver(P2_Points, P1_Points))
+            literalScore = "Advantage Player 2";
         
         score = win(score);
         return score;
@@ -71,6 +70,25 @@ public class TennisGame2 implements TennisGame
    		return result;
    	}
     
+    private boolean isInAdvantageOver(int firstPlayerPoints, int secondPlayerPoints) 
+    {
+    	return firstPlayerPoints> secondPlayerPoints && secondPlayerPoints >= 4;
+    }
+    
+    private String advantage() 
+	{ String result= "";
+		if (isInAdvantageOver(P1_Points, P2_Points))
+        {
+            result = "Advantage player1";  /* para cada condicion de los 2 ifs extraido el metodo */
+        }
+        
+        if (isInAdvantageOver(P2_Points, P1_Points))
+        {
+            result = "Advantage player2";
+        }
+		return result;
+	}
+    
     private String getLiteral(int p1point2) 
 	{
 		String result = "";
@@ -97,21 +115,6 @@ public class TennisGame2 implements TennisGame
         }
 		return score;
 	}
-    
-    private String advantage(String score) 
-	{
-		if (P1point > P2point && P2point >= 3)
-        {
-            score = "Advantage player1";
-        }
-        
-        if (P2point > P1point && P1point >= 3)
-        {
-            score = "Advantage player2";
-        }
-		return score;
-	}
-   
     
     public void SetP1Score(int number){
         
