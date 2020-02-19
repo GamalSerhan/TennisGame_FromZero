@@ -19,9 +19,8 @@ public class TennisGame2 implements TennisGame
         String score = "";
         if(isTie())
     		literalScore = getLiteral(P1_Points) + "-" + "-All";
-        
-        score = Deuce(score);
-        
+        if(isDeuce())
+    		literalScore = "Deuce";
         if(isNormal())
     		literalScore = getLiteral(P1_Points) + "-" + getLiteral(P2_Points);
         
@@ -59,6 +58,18 @@ public class TennisGame2 implements TennisGame
             result = getLiteral(P1_Points) + "-" + getLiteral(P2_Points);
 		return result;
 	}
+    
+    private boolean isDeuce() 
+    {
+    	return P1_Points==P2_Points && P1_Points>=3;
+    }
+    
+    private String Deuce() 
+   	{String result= "";
+   		if (isDeuce())
+               result = "Deuce";
+   		return result;
+   	}
     
     private String getLiteral(int p1point2) 
 	{
@@ -101,12 +112,6 @@ public class TennisGame2 implements TennisGame
 		return score;
 	}
    
-    private String Deuce(String score) 
-	{
-		if (P1point==P2point && P1point>=3)
-            score = "Deuce";
-		return score;
-	}
     
     public void SetP1Score(int number){
         
